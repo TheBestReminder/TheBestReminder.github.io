@@ -11,6 +11,8 @@
 <p1>Monday</p1>
 
 <p10 id="monday"></p10>
+<p10 id="monday1"></p10>
+<p11 id="mondone"></p11>
 
 <p2>Tuesday</p2>
 
@@ -49,20 +51,24 @@ LocalStoarge.setItem("event", event);
 }
 
 function getEvent(){
+	var objDate = new Date();
+        var hours = objDate.getHours();
 	LocalStoarge.getItem(event);
 
 	if(event[0] = "monday"){
 			document.getElementById("monday").innerHTML = event[1];
-			document.getElementById("monday").innerHTML = event[2];
+			document.getElementById("monday1").innerHTML = event[2];
 		if(event[2] = ){
 			
 		}
 	}
 	if(event[0] = "Monday"){
 			document.getElementById("monday").innerHTML = event[1];
-			document.getElementById("monday").innerHTML = event[2];
+			document.getElementById("monday1").innerHTML = event[2];
 	}
-	if(event)
+	if(event[1] = hours){
+		document.getElementId("mondone").innerHTML = "The Event Is Happening.";
+	}
 
 
 }
