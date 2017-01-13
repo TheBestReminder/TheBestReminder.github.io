@@ -53,7 +53,7 @@ LocalStoarge.setItem("event", event);
 function getEvent(){
 	var objDate = new Date();
         var hours = objDate.getHours();
-	LocalStoarge.getItem(event);
+	var event = LocalStoarge.getItem("event");
 
 	if(event[0] = "monday"){
 			document.getElementById("monday").innerHTML = event[1];
