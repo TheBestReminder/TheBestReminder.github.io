@@ -1,0 +1,72 @@
+<html>
+
+ <link rel="stylesheet" type="text/css" href="style.css">
+
+<body>
+<h1>Reminder</h1>
+<p>Enter you week so I can remind you.</p>
+
+<button onclick="addEvent()">Add a event this week</button>
+
+<p1>Monday</p1>
+
+<p10 id="monday"></p10>
+
+<p2>Tuesday</p2>
+
+<p10 id="tuesday"></p10>
+
+<p3>Wednesday</p3>
+
+<p10 id="wednesday"></p10>
+
+<p4>Thursday</p4>
+
+
+
+<p5>Friday</p5>
+
+
+
+<p6>Saturday</p6>
+
+
+
+<p7>Sunday</p7>
+
+
+
+</body>
+
+<script>
+function addEvent(){
+var day = prompt("What days is the event you want to add?");
+var time = prompt("What is the time that the event is going");
+var des = prompt("Add a description to this event");
+var event = [day, time, des];
+LocalStoarge.setItem("event", event);
+
+}
+
+function getEvent(){
+	LocalStoarge.getItem(event);
+
+	if(event[0] = "monday"){
+			document.getElementById("monday").innerHTML = event[1];
+			document.getElementById("monday").innerHTML = event[2];
+	}
+	if(event[0] = "Monday"){
+			document.getElementById("monday").innerHTML = event[1];
+			document.getElementById("monday").innerHTML = event[2];
+	}
+	if(event)
+
+
+}
+
+</script>
+
+
+
+
+</html>
