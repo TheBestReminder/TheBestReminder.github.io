@@ -12,7 +12,6 @@
 
 <p10 id="monday"></p10>
 <p10 id="monday1"></p10>
-<p11 id="mondone"></p11>
 
 <p2>Tuesday</p2>
 
@@ -24,19 +23,19 @@
 
 <p4>Thursday</p4>
 
-<p10 id="thursday"></p10>
+
 
 <p5>Friday</p5>
 
-<p10 id="friday"></p10>
+
 
 <p6>Saturday</p6>
 
-<p10 id="saturday"></p10>
+
 
 <p7>Sunday</p7>
 
-<p10 id="sunday"></p10>
+
 
 </body>
 
@@ -45,33 +44,27 @@ function addEvent(){
 var day = prompt("What days is the event you want to add?");
 var time = prompt("What is the time that the event is going");
 var des = prompt("Add a description to this event");
-var event = [day, time, des];
-LocalStoarge.setItem("event", event);
+
+LocalStoarge.setItem("day", day);
+LocalStoarge.setItem("time", time);
+LocalStoarge.setItem("des", des);
+
+alert("Done");
 
 }
 
 function getEvent(){
-	var objDate = new Date();
-        var hours = objDate.getHours();
-	var event = LocalStoarge.getItem("event");
+	var day = LocalStoarge.getItem("day");
+	var time = LocalStoarge.getItem("time");
+	var des = LocalStoarge.getItem("des");
 
-	if(event[0] = "monday"){
-			document.getElementById("monday").innerHTML = event[1];
-			document.getElementById("monday1").innerHTML = event[2];
-		if(event[2] = ){
-			
-		}
-	}
-	if(event[0] = "Monday"){
-			document.getElementById("monday").innerHTML = event[1];
-			document.getElementById("monday1").innerHTML = event[2];
-	}
-	if(event[1] = hours){
-		document.getElementId("mondone").innerHTML = "The Event Is Happening.";
+	if(day = "monday"){
+		document.getElementById("monday").innerHTML = time;
+		document.getElementById("monday1").innerHTML = des;
 	}
 
+	alert("Done");
 
-}
 
 </script>
 
