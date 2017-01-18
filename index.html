@@ -7,6 +7,7 @@
 <p>Enter you week so I can remind you.</p>
 
 <button onclick="addEvent()">Add a event this week</button>
+<button onclick="getEvent()">See my events</button>
 
 <p1>Monday</p1>
 
@@ -16,55 +17,63 @@
 <p2>Tuesday</p2>
 
 <p10 id="tuesday"></p10>
+<p10 id="tuesday1"></p10>
 
 <p3>Wednesday</p3>
 
 <p10 id="wednesday"></p10>
+<p10 id="wednesday1"></p10>
 
 <p4>Thursday</p4>
 
-
+<p10 id="thursday"></p10>
+<p10 id="thursday1"></p10>
 
 <p5>Friday</p5>
 
-
+<p10 id="friday"></p10>
+<p10 id="friday1"></p10>
 
 <p6>Saturday</p6>
 
-
+<p10 id="saturday"></p10>
+<p10 id="saturday1"></p10>
 
 <p7>Sunday</p7>
 
-
+<p10 id="sunday"></p10>
+<p10 id="sunday1"></p10>
 
 </body>
 
 <script>
 function addEvent(){
+var timeRan;
+if(timeRan < 1){
+   var again = prompt("Add another event?");
+    
+}
+timeRan = timeRan + 1;
 var day = prompt("What days is the event you want to add?");
 var time = prompt("What is the time that the event is going");
 var des = prompt("Add a description to this event");
 
-LocalStoarge.setItem("day", day);
-LocalStoarge.setItem("time", time);
-LocalStoarge.setItem("des", des);
-
-alert("Done");
+localStorage.setItem("day", day);
+localStorage.setItem("time", time);
+localStorage.setItem("des", des);
 
 }
 
 function getEvent(){
-	var day = LocalStoarge.getItem("day");
-	var time = LocalStoarge.getItem("time");
-	var des = LocalStoarge.getItem("des");
+	var day = localStorage.getItem("day");
+	var time = localStorage.getItem("time");
+	var des = localStorage.getItem("des");
 
-	if(day = "monday"){
-		document.getElementById("monday").innerHTML = time;
-		document.getElementById("monday1").innerHTML = des;
-	}
-
+	day = day.toLowerCase();
+      document.getElementById(day).innerHTML = time;
+	document.getElementById(day+"1").innerHTML = des;
 	alert("Done");
-	
+
 }
 
 
