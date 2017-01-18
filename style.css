@@ -1,4 +1,42 @@
-p11{
-color: red;
-font-size: 30px;
+h1{
+    font-size: 75px;
+}
+p{
+    font-size: 30px;
+}
+p1{
+    color: green;
+    font-size: 40px;
+    margin-right: 400px;
+}
+p2{
+    color: aqua;
+    font-size: 40px;
+}
+p3{
+    color: darkorange;
+    font-size: 40px;
+}
+p4{
+    color: chartreuse;
+    font-size: 40px;
+}
+p5{
+    color: darkred;
+    font-size: 40px;
+}
+p6{
+    color: dodgerblue;
+    font-size: 40px;
+}
+p7{
+    color: forestgreen;
+    font-size: 40px;
+}
+p8{
+    color: white;
+}
+p10{
+    color: black;
+    font-size: 20px;
 }
