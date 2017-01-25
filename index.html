@@ -4,15 +4,16 @@
 
 <body>
 <h1>Reminder</h1>
-<p>Enter you week so I can remind you.</p>
+<p>Enter you week so I can remind you. Don't close this page.</p>
+<p>Also If you want to start fresh. Refresh the page.</p>
 
 <button onclick="addEvent()">Add a event this week</button>
-<button onclick="getEvent()">See my events</button>
-
+    
 <p1>Monday</p1>
 
 <p10 id="monday"></p10>
 <p10 id="monday1"></p10>
+    
 
 <p2>Tuesday</p2>
 
@@ -48,38 +49,84 @@
 
 <script>
 function addEvent(){
-var timeRan;
-if(timeRan < 1){
-   var again = prompt("Add another event?");
-    
-}
-timeRan = timeRan + 1;
 var day = prompt("What days is the event you want to add?");
 var time = prompt("What is the time that the event is going");
 var des = prompt("Add a description to this event");
+    
 
 localStorage.setItem("day", day);
 localStorage.setItem("time", time);
 localStorage.setItem("des", des);
+getEvent();
 
-}
-
-function getEvent(){
-	var day = localStorage.getItem("day");
+}  
+    function getEvent(){
+    var day = localStorage.getItem("day");
 	var time = localStorage.getItem("time");
 	var des = localStorage.getItem("des");
 
-	day = day.toLowerCase();
-      document.getElementById(day).innerHTML = time;
-	document.getElementById(day+"1").innerHTML = des;
-	alert("Done");
-
+    day = day.toLowerCase();
+    //For when the time of the event
+    var mon = [];
+    var tues = [];
+    var wednes = [];
+    var thurs = [];
+    var fri = [];
+    var satur = [];
+    var sun = [];
+    //for the description of the event
+    var mon1 = [];
+    var tues1 = [];
+    var wednes1 = [];
+    var thurs1 = [];
+    var fri1 = [];
+    var satur1 = [];
+    var sun1 = [];
+    if(day == "monday"){
+        mon.push(time);
+        mon1.push(des);
+        document.getElementById("monday").innerHTML = mon;
+        document.getElementById("monday1").innerHTML = mon1;
+    }
+    if(day == "tuesday"){
+        tues.push(time);
+        tues1.push(des);
+        document.getElementById("tuesday").innerHTML = tues;
+        document.getElementById("tuesday1").innerHTML = tues1;
+    }
+    if(day == "wednesday"){
+        wednes.push(time);
+        wednes1.push(des);
+        document.getElementById("wednesday").innerHTML = wednes;
+        document.getElementById("wednesday").innerHTML = wednes1;
+    }
+    if(day == "thursday"){
+        thurs.push(time);
+        thurs1.push(des);
+        document.getElementById("thursday").innerHTML = thurs;
+        document.getElementById("thursday1").innerHTML = thurs1;
+    }
+    if(day == "friday"){
+        fri.push(time);
+        fri1.push(des);
+        document.getElementById("friday").innerHTML = fri;
+        document.getElementById("friday1").innerHTML = fri1;
+    }
+    if(day == "saturday"){
+        satur.push(time);
+        satur1.push(des);
+        document.getElementById("saturday").innerHTML = satur;
+        document.getElementById("saturday1").innerHTML = satur1;
+    }
+    if(day == "sunday"){
+        sun.push(time);
+        sun1.push(des);
+        document.getElementById("sunday").innerHTML = sun;
+        document.getElementById("sunday1").innerHTML = sun1;
+    }
 }
-
+    
 
 </script>
-
-
-
 
 </html>
