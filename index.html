@@ -49,84 +49,65 @@
 
 <script>
 function addEvent(){
-var day = prompt("What days is the event you want to add?");
-var time = prompt("What is the time that the event is going");
-var des = prompt("Add a description to this event");
-    
+  var day = prompt("What days is the event you want to add?");
+  var time = prompt("What is the time that the event is going");
+  var des = prompt("Add a description to this event");
+   
+	var calendarEvents = getCalendarEvents();
 
-localStorage.setItem("day", day);
-localStorage.setItem("time", time);
-localStorage.setItem("des", des);
-getEvent();
+	// save the event to the day we want it to show under
+  calendarEvents[day.toLowerCase()].push({
+    day: day,
+    time: time,
+    des: des
+  });
+  
+  // save all of the events at once
+	localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
 
-}  
-    function getEvent(){
-    var day = localStorage.getItem("day");
-	var time = localStorage.getItem("time");
-	var des = localStorage.getItem("des");
-
-    day = day.toLowerCase();
-    //For when the time of the event
-    var mon = [];
-    var tues = [];
-    var wednes = [];
-    var thurs = [];
-    var fri = [];
-    var satur = [];
-    var sun = [];
-    //for the description of the event
-    var mon1 = [];
-    var tues1 = [];
-    var wednes1 = [];
-    var thurs1 = [];
-    var fri1 = [];
-    var satur1 = [];
-    var sun1 = [];
-    if(day == "monday"){
-        mon.push(time);
-        mon1.push(des);
-        document.getElementById("monday").innerHTML = mon;
-        document.getElementById("monday1").innerHTML = mon1;
-    }
-    if(day == "tuesday"){
-        tues.push(time);
-        tues1.push(des);
-        document.getElementById("tuesday").innerHTML = tues;
-        document.getElementById("tuesday1").innerHTML = tues1;
-    }
-    if(day == "wednesday"){
-        wednes.push(time);
-        wednes1.push(des);
-        document.getElementById("wednesday").innerHTML = wednes;
-        document.getElementById("wednesday").innerHTML = wednes1;
-    }
-    if(day == "thursday"){
-        thurs.push(time);
-        thurs1.push(des);
-        document.getElementById("thursday").innerHTML = thurs;
-        document.getElementById("thursday1").innerHTML = thurs1;
-    }
-    if(day == "friday"){
-        fri.push(time);
-        fri1.push(des);
-        document.getElementById("friday").innerHTML = fri;
-        document.getElementById("friday1").innerHTML = fri1;
-    }
-    if(day == "saturday"){
-        satur.push(time);
-        satur1.push(des);
-        document.getElementById("saturday").innerHTML = satur;
-        document.getElementById("saturday1").innerHTML = satur1;
-    }
-    if(day == "sunday"){
-        sun.push(time);
-        sun1.push(des);
-        document.getElementById("sunday").innerHTML = sun;
-        document.getElementById("sunday1").innerHTML = sun1;
-    }
+	updateEventDisplay(); // update the html, so we can see the events
 }
-    
 
+// gets calendar events from localStorage (if exists) or returns a blank calendar
+function getCalendarEvents() {
+	var events = localStorage.getItem('calendarEvents');
+  if(!events) {
+  	return { monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: [] };
+  }
+ 	return JSON.parse(events);
+}
+
+// draws the events for all days
+function updateEventDisplay(){
+    var calendarEvents = getCalendarEvents();
+    if(!calendarEvents) { // need this line in case someone hasn't called addEventYet 
+    	return;
+    }
+    // we could make this simpler if we wanted also
+    updateDayDisplay(calendarEvents.monday,'monday');
+    updateDayDisplay(calendarEvents.tuesday,'tuesday');
+    updateDayDisplay(calendarEvents.wednesday,'wednesday');
+    updateDayDisplay(calendarEvents.thursday,'thursday');
+    updateDayDisplay(calendarEvents.friday,'friday');
+    updateDayDisplay(calendarEvents.saturday,'saturday');
+    updateDayDisplay(calendarEvents.sunday,'sunday');
+}
+  
+// draw the events on a single day
+function updateDayDisplay(day, elementId) {
+    var text = '';
+    for(var i = 0; i < day.length; i++) {
+      text += '<li>' + day[i].time + ': ' + day[i].des + '</li>'; // not sure how you want to format each event 
+    }
+    
+    document.getElementById(elementId).innerHTML = '<ul>' + text + '</ul>';
+}
+
+// finally, we want to draw the events (if there are any) when someone first comes to the page 
+// also, we need to "stringify" and parse the localstorage because localstorage only saves strings
+
+updateEventDisplay();
 </script>
 
 </html>
+
