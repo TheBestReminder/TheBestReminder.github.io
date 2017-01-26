@@ -59,17 +59,16 @@ function addEvent(){
     
 	var calendarEvents = getCalendarEvents();
 
-	// save the event to the day we want it to show under
   calendarEvents[day.toLowerCase()].push({
     day: day,
     time: time,
     des: des
   });
   
-  // save all of the events at once
+
 	localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
 
-	updateEventDisplay(); // update the html, so we can see the events
+	updateEventDisplay(); // update the html,can see the events
     checkTime();
 }
     
@@ -97,7 +96,7 @@ function updateEventDisplay(){
     if(!calendarEvents) { // need this line in case someone hasn't called addEventYet 
     	return;
     }
-    // we could make this simpler if we wanted also
+    //  could make this simpler if we wanted also
     updateDayDisplay(calendarEvents.monday,'monday');
     updateDayDisplay(calendarEvents.tuesday,'tuesday');
     updateDayDisplay(calendarEvents.wednesday,'wednesday');
@@ -111,14 +110,13 @@ function updateEventDisplay(){
 function updateDayDisplay(day, elementId) {
     var text = '';
     for(var i = 0; i < day.length; i++) {
-      text += '<li>' + day[i].time + ': ' + day[i].des + '</li>'; // not sure how you want to format each event 
+      text += '<li>' + day[i].time + ': ' + day[i].des + '</li>';  
     }
     
     document.getElementById(elementId).innerHTML = '<ul>' + text + '</ul>';
 }
 
-// finally, we want to draw the events (if there are any) when someone first comes to the page 
-// also, we need to "stringify" and parse the localstorage because localstorage only saves strings
+
 
 updateEventDisplay();
     
