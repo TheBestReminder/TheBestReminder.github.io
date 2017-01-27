@@ -51,35 +51,55 @@
 <script>   
     
 function addEvent(){
-  var day = prompt("What days is the event you want to add?");
-  var time = prompt("What is the time that the event is going");
-  var des = prompt("Add a description to this event");
+    var day = prompt("What days is the event you want to add?");
+    var timeHour = prompt("What is the hour that the event is at");
+    var timeMin = prompt("What is the minutes that the event is at");
+    var des = prompt("Add a description to this event");
         
+    var timeCheck = timeHour;
+    var timeCheck1 = timeMin; 
     
+    localStorage.setItem("timeCheck", timeCheck);
+    localStorage.setItem("timeCheck1", timeCheck1);
     
 	var calendarEvents = getCalendarEvents();
 
+	// save the event to the day we want it to show under
   calendarEvents[day.toLowerCase()].push({
     day: day,
-    time: time,
+    timeHour: timeHour,
+    timeMin: timeMin,
     des: des
   });
   
-
+  // save all of the events at once
 	localStorage.setItem('calendarEvents', JSON.stringify(calendarEvents));
-
-	updateEventDisplay(); // update the html,can see the events
     checkTime();
 }
     
 function checkTime(){
+    var timeCheck = localStorage.getItem("timeCheck");
+    var timeCheck1 = localStorage.getItem("timeCheck1");
     for(var i = 0; i < day.length; i++){
-        if(){
-            
+        //checks if the same time
+        if(day[i].timeHour == timeCheck){
+            if(day[i].timeMin == timeCheck1){
+            alert("You have events at the same time.");
+            }
         }
+        else if(day[i].time != timeCheck){
+            updateEventDisplay(); // update the html, so we can see the events
+        }
+        //checks how long until the event goes
+        var d = new Date();
+        var currentHour = d.getHours();
+        var d1 = new Date();
+        var currentMin = d1.getMinutes();
+        
+        
     }
     
-}
+}    
 
 // gets calendar events from localStorage (if exists) or returns a blank calendar
 function getCalendarEvents() {
@@ -96,7 +116,7 @@ function updateEventDisplay(){
     if(!calendarEvents) { // need this line in case someone hasn't called addEventYet 
     	return;
     }
-    //  could make this simpler if we wanted also
+    // we could make this simpler if we wanted also
     updateDayDisplay(calendarEvents.monday,'monday');
     updateDayDisplay(calendarEvents.tuesday,'tuesday');
     updateDayDisplay(calendarEvents.wednesday,'wednesday');
@@ -110,20 +130,21 @@ function updateEventDisplay(){
 function updateDayDisplay(day, elementId) {
     var text = '';
     for(var i = 0; i < day.length; i++) {
-      text += '<li>' + day[i].time + ': ' + day[i].des + '</li>';  
+      text += '<li>' + day[i].timeHour + ': ' + day[i].timeMin + ':' + day[i].des + '</li>'; // not sure how you want to format each event 
     }
     
     document.getElementById(elementId).innerHTML = '<ul>' + text + '</ul>';
 }
 
-
+// finally, we want to draw the events (if there are any) when someone first comes to the page 
+// also, we need to "stringify" and parse the localstorage because localstorage only saves strings
 
 updateEventDisplay();
     
 function clearData(){
     window.localStorage.clear("calendarEvents");  
 }     
-    
+   
     
 </script>
 
